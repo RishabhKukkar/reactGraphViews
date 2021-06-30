@@ -103,21 +103,42 @@ const App: () => Node = () => {
           // yAxisSuffix="k"
           yAxisInterval={10} // optional, defaults to 1
           chartConfig={{
-            backgroundColor: '#e26a00',
-            backgroundGradientFrom: '#fb8c00',
-            backgroundGradientTo: '#ffa726',
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `white`,
-            labelColor: (opacity = 1) => `white`,
-            style: {
-              borderRadius: 16,
+            backgroundColor: '#fff000',
+            backgroundGradientFrom: '#ffffff',
+            backgroundGradientTo: '#fffffa',
+            decimalPlaces: 0,
+            linejoinType: 'round',
+            scrollableDotRadius: 6,
+            scrollableDotStrokeColor: 'tomato',
+            scrollableDotStrokeWidth: 3,
+            scrollableInfoViewStyle: {
+              justifyContent: 'center',
+              alignContent: 'center',
+              backgroundColor: '#121212',
+              borderRadius: 2,
+              marginTop: 25,
+              marginLeft: 25,
             },
-            propsForDots: {
-              r: '6',
-              strokeWidth: '2',
-              stroke: 'blue',
+            scrollableInfoTextStyle: {
+              fontSize: 10,
+              color: '#C4C4C4',
+              marginHorizontal: 2,
+              flex: 1,
+              textAlign: 'center',
+            },
+            scrollableInfoSize: {
+              width: 30,
+              height: 30,
+            },
+            scrollableInfoOffset: 15,
+            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            color: (opacity = 1) => `rgb(78, 135, 210, ${opacity})`,
+            propsForBackgroundLines: {
+              strokeDasharray: '', 
+              strokeDashoffset: 15,
             },
           }}
+          withInnerLines={false}
           style={{
             marginVertical: 8,
             borderRadius: 16,
@@ -133,20 +154,35 @@ const App: () => Node = () => {
         yAxisLabel="$"
         chartConfig={chartConfig}
         verticalLabelRotation={30}
+        withShadow={true}
+        withDots={true}
+        withScrollableDot={true}
+        withOuterLines={true}
+        transparent={true}
+        withInnerLines={true}
         bezier
       />
     </SafeAreaView>
   );
 };
 const chartConfig = {
+  // withShadow: false,
+  // withOuterLines: false,
   backgroundGradientFrom: 'white',
-  backgroundGradientFromOpacity: 1,
+  backgroundGradientFromOpacity: 0.1,
   backgroundGradientTo: 'white',
   backgroundGradientToOpacity: 0.5,
   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   strokeWidth: 10, // optional, default 3
   barPercentage: 0.5,
-  useShadowColorFromDataset: false, // optional
+  useShadowColorFromDataset: false,
+  propsForBackgroundLines: {
+    strokeWidth: 0,
+    stroke: 'blue',
+    strokeDasharray: '',
+  },
+
+  // optional
 };
 
 const styles = StyleSheet.create({
